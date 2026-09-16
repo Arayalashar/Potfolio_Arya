@@ -1,40 +1,23 @@
 "use client";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { experiences } from "@/data/experiences";
-import { FiBriefcase, FiCalendar, FiMapPin, FiCheck } from "react-icons/fi";
 
 export default function ExperienceSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 60%", "end 80%"],
+  });
+
+  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="experience" className="section-padding" ref={ref}>
-      <div className="section-container">
+    <section id="experience" className="section-padding relative">
+      <div className="section-container" style={{ maxWidth: "1000px" }}>
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: "4rem" }}
-        >
-          <span
-            style={{
-              display: "inline-block",
-              padding: "0.375rem 1rem",
-              borderRadius: "50px",
-              background: "var(--bg-card)",
-              border: "1px solid var(--border-color)",
-              fontSize: "0.8rem",
-              fontWeight: 500,
-              color: "var(--text-muted)",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              marginBottom: "1rem",
-            }}
-          >
-            Experience
-          </span>
+        <div style={{ textAlign: "center", marginBottom: "5rem" }}>
           <h2
             style={{
               fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
@@ -44,8 +27,7 @@ export default function ExperienceSection() {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            My professional{" "}
-            <span className="instagram-text">journey</span>
+            Experience
           </h2>
           <p
             style={{
@@ -58,214 +40,179 @@ export default function ExperienceSection() {
           >
             Experiences that shaped my skills as a designer and developer
           </p>
-        </motion.div>
+        </div>
 
-        {/* Timeline */}
+        {/* Timeline Container */}
         <div
+          ref={containerRef}
           style={{
             position: "relative",
-            maxWidth: "860px",
             margin: "0 auto",
           }}
         >
-          {/* Vertical line */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: "easeInOut" }}
+          {/* Static Background Line */}
+          <div
             style={{
               position: "absolute",
               left: "50%",
               top: 0,
               bottom: 0,
-              width: "2px",
-              background:
-                "linear-gradient(180deg, #ffffff, #aaaaaa, #555555, transparent)",
-              transformOrigin: "top",
+              width: "1px",
+              background: "var(--border-color)",
               transform: "translateX(-50%)",
             }}
-            className="timeline-line"
-          />
+            className="timeline-line-bg"
+          >
+            {/* Animated Active Line */}
+            <motion.div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: height,
+                background: "var(--text-primary)", // Black/White depending on theme
+                transformOrigin: "top",
+              }}
+            />
+          </div>
 
           {experiences.map((exp, index) => {
             const isLeft = index % 2 === 0;
             return (
-              <motion.div
+              <div
                 key={exp.id}
-                initial={{ opacity: 0, y: -60 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -60 }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.2 + index * 0.2,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
                 style={{
                   display: "flex",
                   justifyContent: isLeft ? "flex-start" : "flex-end",
-                  marginBottom: "3rem",
+                  marginBottom: "4rem",
                   position: "relative",
+                  width: "100%",
                 }}
-                className="exp-item"
+                className="exp-row"
               >
-                {/* Card */}
+                {/* Timeline Dot */}
                 <div
-                  className="card"
                   style={{
-                    width: "calc(50% - 2.5rem)",
-                    padding: "1.75rem",
-                    borderRadius: "1.25rem",
-                    position: "relative",
-                    background: "var(--bg-card)",
+                    position: "absolute",
+                    left: "50%",
+                    top: "30%",
+                    transform: "translate(-50%, -50%)",
+                    width: "16px",
+                    height: "16px",
+                    borderRadius: "50%",
+                    border: "3px solid var(--text-primary)",
+                    background: "var(--bg-primary)",
+                    zIndex: 10,
+                  }}
+                  className="timeline-dot"
+                />
+
+                {/* Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="exp-card-wrapper"
+                  style={{
+                    width: "calc(50% - 3rem)",
                   }}
                 >
-                  {/* Number badge */}
                   <div
                     style={{
-                      position: "absolute",
-                      top: "1.5rem",
-                      [isLeft ? "right" : "left"]: "-3.5rem",
-                      width: "2.5rem",
-                      height: "2.5rem",
-                      borderRadius: "50%",
-                      background:
-                        "linear-gradient(135deg, #ffffff, #aaaaaa)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "black",
-                      fontWeight: 800,
-                      fontSize: "0.875rem",
-                      boxShadow: "0 4px 15px rgba(255,255,255,0.15)",
-                      zIndex: 2,
-                    }}
-                    className="exp-dot"
-                  >
-                    {index + 1}
-                  </div>
-
-                  {/* Documentation image placeholder */}
-                  <div
-                    style={{
-                      width: "100%",
-                      aspectRatio: "16/7",
-                      borderRadius: "0.75rem",
-                      background:
-                        "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+                      background: "var(--bg-card)",
                       border: "1px solid var(--border-color)",
-                      marginBottom: "1.25rem",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      overflow: "hidden",
+                      borderRadius: "1.5rem",
+                      padding: "2.5rem 2rem",
+                      textAlign: "center",
+                      boxShadow: "0 10px 30px -10px rgba(0,0,0,0.05)",
                     }}
                   >
-                    <span
+                    {/* Period */}
+                    <div
                       style={{
-                        fontSize: "0.75rem",
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
                         color: "var(--text-muted)",
-                        fontStyle: "italic",
+                        marginBottom: "1rem",
+                        letterSpacing: "0.05em",
                       }}
                     >
-                      📸 {exp.documentationImage.replace("/images/", "")}
-                    </span>
-                  </div>
+                      {exp.period}
+                    </div>
 
-                  {/* Role & Org */}
-                  <div style={{ marginBottom: "0.875rem" }}>
+                    {/* Job Title */}
                     <h3
                       style={{
-                        fontSize: "1.1rem",
-                        fontWeight: 700,
+                        fontSize: "1.5rem",
+                        fontWeight: 800,
                         color: "var(--text-primary)",
-                        letterSpacing: "-0.01em",
-                        marginBottom: "0.25rem",
+                        marginBottom: "0.5rem",
+                        lineHeight: 1.2,
+                        letterSpacing: "-0.02em",
                       }}
                     >
                       {exp.jobTitle}
                     </h3>
+
+                    {/* Organization */}
+                    <div
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: 700,
+                        color: "var(--text-muted)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.1em",
+                        marginBottom: "1.5rem",
+                      }}
+                    >
+                      {exp.organization}
+                    </div>
+
+                    {/* Description */}
+                    <p
+                      style={{
+                        fontSize: "0.9rem",
+                        color: "var(--text-secondary)",
+                        lineHeight: 1.7,
+                        marginBottom: "2rem",
+                        textAlign: "center",
+                      }}
+                    >
+                      {exp.description}
+                    </p>
+
+                    {/* Tags */}
                     <div
                       style={{
                         display: "flex",
                         flexWrap: "wrap",
+                        justifyContent: "center",
                         gap: "0.5rem",
-                        alignItems: "center",
                       }}
                     >
-                      <span
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "0.3rem",
-                          fontSize: "0.85rem",
-                          color: "var(--text-secondary)",
-                          fontWeight: 500,
-                        }}
-                      >
-                        <FiBriefcase style={{ fontSize: "0.8rem" }} />
-                        {exp.organization}
-                      </span>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          padding: "0.2rem 0.625rem",
-                          background:
-                            "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
-                          border: "1px solid rgba(255,255,255,0.2)",
-                          borderRadius: "50px",
-                          fontSize: "0.75rem",
-                          fontWeight: 600,
-                          color: "#ffffff",
-                        }}
-                      >
-                        {exp.position}
-                      </span>
+                      {exp.tags &&
+                        exp.tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            style={{
+                              fontSize: "0.65rem",
+                              fontWeight: 700,
+                              padding: "0.4rem 0.75rem",
+                              background: "var(--bg-secondary)",
+                              color: "var(--text-primary)",
+                              borderRadius: "50px",
+                              letterSpacing: "0.05em",
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
                     </div>
                   </div>
-
-                  {/* Period */}
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.375rem",
-                      marginBottom: "1rem",
-                      fontSize: "0.8rem",
-                      color: "var(--text-muted)",
-                    }}
-                  >
-                    <FiCalendar style={{ fontSize: "0.8rem" }} />
-                    {exp.period}
-                  </div>
-
-                  {/* Description */}
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                    {exp.description.map((desc, i) => (
-                      <li
-                        key={i}
-                        style={{
-                          display: "flex",
-                          gap: "0.625rem",
-                          alignItems: "flex-start",
-                          marginBottom: i < exp.description.length - 1 ? "0.625rem" : 0,
-                          fontSize: "0.85rem",
-                          color: "var(--text-secondary)",
-                          lineHeight: 1.6,
-                        }}
-                      >
-                        <FiCheck
-                          style={{
-                            flexShrink: 0,
-                            marginTop: "3px",
-                            color: "#ffffff",
-                            fontSize: "0.85rem",
-                          }}
-                        />
-                        {desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             );
           })}
         </div>
@@ -273,10 +220,18 @@ export default function ExperienceSection() {
 
       <style>{`
         @media (max-width: 768px) {
-          .timeline-line { left: 1rem !important; }
-          .exp-item { justify-content: flex-end !important; }
-          .exp-item > div.card { width: calc(100% - 3.5rem) !important; }
-          .exp-dot { right: auto !important; left: -3.5rem !important; }
+          .timeline-line-bg {
+            left: 24px !important;
+          }
+          .exp-row {
+            justify-content: flex-end !important;
+          }
+          .exp-card-wrapper {
+            width: calc(100% - 60px) !important;
+          }
+          .timeline-dot {
+            left: 24px !important;
+          }
         }
       `}</style>
     </section>
