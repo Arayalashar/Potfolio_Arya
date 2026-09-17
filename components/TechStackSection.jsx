@@ -1,22 +1,47 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { techstack } from "@/data/techstack";
 import {
-  SiFigma,
-  SiHtml5, SiJavascript, SiTypescript,
+  SiFigma, SiHtml5, SiJavascript, SiTypescript,
   SiReact, SiNextdotjs, SiTailwindcss, SiFramer,
-  SiGit, SiGithub, SiVercel,
+  SiGit, SiGithub, SiVercel, SiFlutter, SiCanva, 
+  SiPhp, SiMysql, SiSupabase
 } from "react-icons/si";
-import { FaAdobe, FaPaintBrush, FaCode } from "react-icons/fa";
+import { FaAdobe, FaPaintBrush, FaCode, FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
+import { TbBrandAdobeIllustrator } from "react-icons/tb";
+
+const CustomAiLogo = ({ className, style }) => (
+  <svg 
+    viewBox="0 0 100 100" 
+    className={className}
+    style={style}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="100" height="100" rx="22" fill="currentColor" />
+    <text 
+      x="50" 
+      y="54" 
+      fontFamily="Arial, Helvetica, sans-serif" 
+      fontWeight="bold" 
+      fontSize="52" 
+      fill="#ffffff" 
+      textAnchor="middle" 
+      dominantBaseline="middle"
+    >
+      Ai
+    </text>
+  </svg>
+);
 
 const iconMap = {
   SiFigma,
   SiAdobexd: FaAdobe,
-  SiAdobeillustrator: FaPaintBrush,
+  SiAdobeillustrator: CustomAiLogo,
+  SiAdobephotoshop: FaAdobe, // Fallback if ever used again
   SiHtml5,
-  SiCss3: FaCode,
+  SiCss3: FaCss3Alt,
   SiJavascript,
   SiTypescript,
   SiReact,
@@ -27,13 +52,11 @@ const iconMap = {
   SiGithub,
   SiVisualstudiocode: VscCode,
   SiVercel,
-};
-
-const categories = ["Design", "Frontend", "Tools"];
-const categoryLabels = {
-  Design: "🎨 Design Tools",
-  Frontend: "💻 Frontend",
-  Tools: "🔧 Dev Tools",
+  SiFlutter,
+  SiCanva,
+  SiPhp,
+  SiMysql,
+  SiSupabase,
 };
 
 export default function TechStackSection() {
@@ -48,212 +71,94 @@ export default function TechStackSection() {
       style={{ background: "var(--bg-secondary)" }}
     >
       <div className="section-container">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1.4fr",
-            gap: "5rem",
-            alignItems: "center",
-          }}
-          className="tech-grid"
+        
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          style={{ textAlign: "center", marginBottom: "4rem" }}
         >
-          {/* Left — Title & Description */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          <h2
+            style={{
+              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              color: "var(--text-primary)",
+              fontFamily: "'Space Grotesk', sans-serif",
+            }}
           >
-            <span
-              style={{
-                display: "inline-block",
-                padding: "0.375rem 1rem",
-                borderRadius: "50px",
-                background: "var(--bg-primary)",
-                border: "1px solid var(--border-color)",
-                fontSize: "0.8rem",
-                fontWeight: 500,
-                color: "var(--text-muted)",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                marginBottom: "1.5rem",
-              }}
-            >
-              My Techstack
-            </span>
-
-            <h2
-              style={{
-                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.03em",
-                color: "var(--text-primary)",
-                fontFamily: "'Space Grotesk', sans-serif",
-                lineHeight: 1.15,
-                marginBottom: "1.5rem",
-              }}
-            >
-              Tools I use to bring{" "}
-              <span className="instagram-text">ideas to life</span>
-            </h2>
-
-            <p
-              style={{
-                fontSize: "0.975rem",
-                color: "var(--text-secondary)",
-                lineHeight: 1.8,
-                marginBottom: "1.5rem",
-              }}
-            >
-              From wireframing in Figma to shipping production-ready code with React and Next.js — I work across the full design-to-development pipeline with a curated set of modern tools.
-            </p>
-
-            <p
-              style={{
-                fontSize: "0.875rem",
-                color: "var(--text-muted)",
-                lineHeight: 1.7,
-              }}
-            >
-              My tech stack evolves constantly as I adopt the latest technologies, but always with a focus on performance, accessibility, and exceptional user experience.
-            </p>
-
-            {/* Category legend */}
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "0.5rem",
-                marginTop: "2rem",
-              }}
-            >
-              {categories.map((cat) => (
-                <span
-                  key={cat}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.375rem",
-                    padding: "0.375rem 0.875rem",
-                    borderRadius: "50px",
-                    background: "var(--bg-primary)",
-                    border: "1px solid var(--border-color)",
-                    fontSize: "0.8rem",
-                    fontWeight: 500,
-                    color: "var(--text-secondary)",
-                  }}
-                >
-                  {categoryLabels[cat]}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right — Tech Cards by Category */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+            Tech Stack & Tools
+          </h2>
+          <p
+            style={{
+              marginTop: "0.75rem",
+              color: "var(--text-muted)",
+              fontSize: "0.975rem",
+              maxWidth: "600px",
+              margin: "0.75rem auto 0",
+              lineHeight: 1.6,
+            }}
           >
-            {categories.map((cat, catIndex) => {
-              const items = techstack.filter((t) => t.category === cat);
-              return (
-                <div key={cat} style={{ marginBottom: catIndex < categories.length - 1 ? "1.75rem" : 0 }}>
-                  <p
-                    style={{
-                      fontSize: "0.75rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "var(--text-muted)",
-                      marginBottom: "0.875rem",
-                    }}
-                  >
-                    {categoryLabels[cat]}
-                  </p>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: "0.625rem",
-                    }}
-                  >
-                    {items.map((tech, i) => {
-                      const IconComp = iconMap[tech.icon];
-                      return (
-                        <motion.div
-                          key={tech.id}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={
-                            inView
-                              ? { opacity: 1, scale: 1 }
-                              : { opacity: 0, scale: 0.8 }
-                          }
-                          transition={{
-                            duration: 0.4,
-                            delay: 0.3 + catIndex * 0.1 + i * 0.04,
-                            ease: "backOut",
-                          }}
-                          whileHover={{
-                            scale: 1.08,
-                            y: -4,
-                            boxShadow: `0 8px 24px ${tech.color}33`,
-                          }}
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                            padding: "0.5rem 0.875rem",
-                            borderRadius: "50px",
-                            background: "var(--bg-primary)",
-                            border: "1px solid var(--border-color)",
-                            cursor: "default",
-                            transition: "border-color 0.25s ease",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.borderColor = tech.color + "66";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.borderColor = "var(--border-color)";
-                          }}
-                        >
-                          {IconComp && (
-                            <IconComp
-                              style={{
-                                fontSize: "1rem",
-                                color: tech.color,
-                                flexShrink: 0,
-                              }}
-                            />
-                          )}
-                          <span
-                            style={{
-                              fontSize: "0.8rem",
-                              fontWeight: 500,
-                              color: "var(--text-secondary)",
-                              whiteSpace: "nowrap",
-                            }}
-                          >
-                            {tech.name}
-                          </span>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
-        </div>
+            The complete ecosystem of tools and technologies I rely on to map logical user flows, craft intuitive interfaces, and build functional, responsive applications.
+          </p>
+        </motion.div>
+
+        {/* 5x2 Grid for Tech Stack */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[repeat(5,160px)] justify-between gap-6 md:gap-8 w-full max-w-[1200px] mx-auto"
+        >
+          {techstack.map((tech) => {
+            const IconComp = iconMap[tech.icon];
+            return (
+              <div key={tech.id} className="w-full flex justify-center">
+                <TechCard tech={tech} IconComp={IconComp} />
+              </div>
+            );
+          })}
+        </motion.div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .tech-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
-          }
-        }
-      `}</style>
     </section>
+  );
+}
+
+function TechCard({ tech, IconComp }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      whileHover={{ y: -4 }}
+      className="flex flex-col items-center justify-center p-4 md:p-5 aspect-square rounded-[24px] transition-all duration-300 gap-2 md:gap-3 w-full max-w-[160px]"
+      style={{
+        background: "var(--bg-primary)",
+        boxShadow: isHovered 
+          ? `0 10px 30px -10px ${tech.color}60` 
+          : "0 2px 10px rgba(0, 0, 0, 0.02)",
+        border: "1px solid rgba(0,0,0,0.03)", 
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="flex items-center justify-center h-10 w-10 text-[32px] md:text-[36px]">
+        {IconComp && (
+          <IconComp
+            className="transition-all duration-300"
+            style={{
+              color: isHovered ? tech.color : "var(--text-primary)", 
+              transform: isHovered ? "scale(1.1)" : "scale(1)",
+            }}
+          />
+        )}
+      </div>
+      <span
+        className="text-[0.75rem] md:text-sm font-semibold text-center transition-colors duration-300"
+        style={{ color: "var(--text-primary)", lineHeight: 1.2 }}
+      >
+        {tech.name}
+      </span>
+    </motion.div>
   );
 }

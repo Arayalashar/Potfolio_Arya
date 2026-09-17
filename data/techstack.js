@@ -1,24 +1,17 @@
 // Data tech stack Arya
 
 export const techstack = [
-  // Design Tools
-  { id: 1, name: "Figma", category: "Design", icon: "SiFigma", color: "#F24E1E" },
-  { id: 2, name: "Adobe XD", category: "Design", icon: "SiAdobexd", color: "#FF61F6" },
-  { id: 3, name: "Adobe Illustrator", category: "Design", icon: "SiAdobeillustrator", color: "#FF9A00" },
+  // Baris 1: Desain & Kerangka Visual
+  { id: 1, name: "Figma", category: "Core", icon: "SiFigma", color: "#F24E1E" },
+  { id: 2, name: "Adobe Illustrator", category: "Core", icon: "SiAdobeillustrator", color: "#FF9A00" },
+  { id: 3, name: "Framer", category: "Core", icon: "SiFramer", color: "#0055FF" },
+  { id: 4, name: "HTML", category: "Core", icon: "SiHtml5", color: "#E34F26" },
+  { id: 5, name: "CSS3", category: "Core", icon: "SiCss3", color: "#1572B6" },
 
-  // Frontend
-  { id: 4, name: "HTML5", category: "Frontend", icon: "SiHtml5", color: "#E34F26" },
-  { id: 5, name: "CSS3", category: "Frontend", icon: "SiCss3", color: "#1572B6" },
-  { id: 6, name: "JavaScript", category: "Frontend", icon: "SiJavascript", color: "#F7DF1E" },
-  { id: 7, name: "TypeScript", category: "Frontend", icon: "SiTypescript", color: "#3178C6" },
-  { id: 8, name: "React", category: "Frontend", icon: "SiReact", color: "#61DAFB" },
-  { id: 9, name: "Next.js", category: "Frontend", icon: "SiNextdotjs", color: "#ffffff" },
-  { id: 10, name: "Tailwind CSS", category: "Frontend", icon: "SiTailwindcss", color: "#06B6D4" },
-  { id: 11, name: "Framer Motion", category: "Frontend", icon: "SiFramer", color: "#0055FF" },
-
-  // Tools & Others
-  { id: 12, name: "Git", category: "Tools", icon: "SiGit", color: "#F05032" },
-  { id: 13, name: "GitHub", category: "Tools", icon: "SiGithub", color: "#ffffff" },
-  { id: 14, name: "VS Code", category: "Tools", icon: "SiVisualstudiocode", color: "#007ACC" },
-  { id: 15, name: "Vercel", category: "Tools", icon: "SiVercel", color: "#ffffff" },
+  // Baris 2: Logika, Aplikasi & Database
+  { id: 6, name: "JavaScript", category: "Core", icon: "SiJavascript", color: "#F7DF1E" },
+  { id: 7, name: "Flutter", category: "Core", icon: "SiFlutter", color: "#02569B" },
+  { id: 8, name: "PHP", category: "Core", icon: "SiPhp", color: "#777BB4" },
+  { id: 9, name: "MySQL", category: "Core", icon: "SiMysql", color: "#4479A1" },
+  { id: 10, name: "Supabase", category: "Core", icon: "SiSupabase", color: "#3ECF8E" },
 ];
