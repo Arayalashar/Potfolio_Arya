@@ -78,7 +78,7 @@ export default function ExperienceSection() {
           </div>
 
           {experiences.map((exp, index) => {
-            const isLeft = index % 2 === 0;
+            const isLeft = index % 2 !== 0;
             return (
               <div
                 key={exp.id}
@@ -120,12 +120,13 @@ export default function ExperienceSection() {
                   }}
                 >
                   <div
+                    className="exp-card-inner"
                     style={{
                       background: "var(--bg-card)",
                       border: "1px solid var(--border-color)",
                       borderRadius: "1.5rem",
                       padding: "2.5rem 2rem",
-                      textAlign: "center",
+                      textAlign: isLeft ? "right" : "left",
                       boxShadow: "0 10px 30px -10px rgba(0,0,0,0.05)",
                     }}
                   >
@@ -177,7 +178,7 @@ export default function ExperienceSection() {
                         color: "var(--text-secondary)",
                         lineHeight: 1.7,
                         marginBottom: "2rem",
-                        textAlign: "center",
+                        textAlign: "justify",
                       }}
                     >
                       {exp.description}
@@ -185,10 +186,11 @@ export default function ExperienceSection() {
 
                     {/* Tags */}
                     <div
+                      className="exp-tags"
                       style={{
                         display: "flex",
                         flexWrap: "wrap",
-                        justifyContent: "center",
+                        justifyContent: isLeft ? "flex-end" : "flex-start",
                         gap: "0.5rem",
                       }}
                     >
@@ -231,6 +233,12 @@ export default function ExperienceSection() {
           }
           .timeline-dot {
             left: 24px !important;
+          }
+          .exp-card-inner {
+            text-align: left !important;
+          }
+          .exp-tags {
+            justify-content: flex-start !important;
           }
         }
       `}</style>
