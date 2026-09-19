@@ -149,7 +149,8 @@ export default function ProjectsSection() {
         @media (max-width: 768px) {
           .project-card-h {
             flex-direction: column !important;
-            height: 100% !important;
+            height: auto !important;
+            max-height: none !important;
             padding: 1.5rem !important;
             gap: 1.5rem !important;
           }
