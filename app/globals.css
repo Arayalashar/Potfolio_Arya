@@ -169,6 +169,12 @@ body {
   padding: 6rem 0;
 }
 
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 4rem 0;
+  }
+}
+
 /* ==========================================
    CARD STYLES
    ========================================== */
