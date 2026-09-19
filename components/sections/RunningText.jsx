@@ -3,7 +3,6 @@
 const textLine1 = "Hello I'm Arya";
 const textLine2 = "UI/UX Designer & Web Developer";
 
-// Repeat content enough times to fill viewport seamlessly
 const repeat = (text, times = 10) =>
   Array(times).fill(`${text}   `).join("");
 
@@ -17,7 +16,6 @@ export default function RunningText() {
         opacity: 0.05,
       }}
     >
-      {/* Row 1 — moves LEFT */}
       <div
         style={{
           display: "flex",
@@ -55,7 +53,6 @@ export default function RunningText() {
         </span>
       </div>
 
-      {/* Row 2 — moves RIGHT */}
       <div
         style={{
           display: "flex",

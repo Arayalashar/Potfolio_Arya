@@ -5,12 +5,11 @@ import { techstack } from "@/data/techstack";
 import {
   SiFigma, SiHtml5, SiJavascript, SiTypescript,
   SiReact, SiNextdotjs, SiTailwindcss, SiFramer,
-  SiGit, SiGithub, SiVercel, SiFlutter, SiCanva, 
+  SiGit, SiGithub, SiVercel, SiFlutter,
   SiPhp, SiMysql, SiSupabase
 } from "react-icons/si";
-import { FaAdobe, FaPaintBrush, FaCode, FaCss3Alt } from "react-icons/fa";
+import { FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
-import { TbBrandAdobeIllustrator } from "react-icons/tb";
 
 const CustomAiLogo = ({ className, style }) => (
   <svg 
@@ -20,26 +19,35 @@ const CustomAiLogo = ({ className, style }) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="100" height="100" rx="22" fill="currentColor" />
-    <text 
-      x="50" 
-      y="54" 
-      fontFamily="Arial, Helvetica, sans-serif" 
-      fontWeight="bold" 
-      fontSize="52" 
-      fill="#ffffff" 
-      textAnchor="middle" 
-      dominantBaseline="middle"
-    >
+    <text x="50" y="54" fontFamily="Arial, Helvetica, sans-serif" fontWeight="bold" fontSize="52" fill="#ffffff" textAnchor="middle" dominantBaseline="middle">
       Ai
+    </text>
+  </svg>
+);
+
+const CustomXdLogo = ({ className, style }) => (
+  <svg viewBox="0 0 100 100" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="22" fill="currentColor" />
+    <text x="50" y="54" fontFamily="Arial, Helvetica, sans-serif" fontWeight="bold" fontSize="52" fill="#ffffff" textAnchor="middle" dominantBaseline="middle">
+      Xd
+    </text>
+  </svg>
+);
+
+const CustomPsLogo = ({ className, style }) => (
+  <svg viewBox="0 0 100 100" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="22" fill="currentColor" />
+    <text x="50" y="54" fontFamily="Arial, Helvetica, sans-serif" fontWeight="bold" fontSize="52" fill="#ffffff" textAnchor="middle" dominantBaseline="middle">
+      Ps
     </text>
   </svg>
 );
 
 const iconMap = {
   SiFigma,
-  SiAdobexd: FaAdobe,
+  SiAdobexd: CustomXdLogo,
   SiAdobeillustrator: CustomAiLogo,
-  SiAdobephotoshop: FaAdobe, // Fallback if ever used again
+  SiAdobephotoshop: CustomPsLogo,
   SiHtml5,
   SiCss3: FaCss3Alt,
   SiJavascript,
@@ -53,7 +61,6 @@ const iconMap = {
   SiVisualstudiocode: VscCode,
   SiVercel,
   SiFlutter,
-  SiCanva,
   SiPhp,
   SiMysql,
   SiSupabase,
@@ -66,18 +73,20 @@ export default function TechStackSection() {
   return (
     <section
       id="techstack"
-      className="section-padding"
       ref={ref}
-      style={{ background: "var(--bg-secondary)" }}
+      style={{ 
+        background: "var(--bg-secondary)", 
+        paddingTop: "60px",
+        paddingBottom: "60px" 
+      }}
     >
       <div className="section-container">
         
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          style={{ textAlign: "center", marginBottom: "4rem" }}
+          style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vh, 4rem)" }}
         >
           <h2
             style={{
@@ -104,7 +113,6 @@ export default function TechStackSection() {
           </p>
         </motion.div>
 
-        {/* 5x2 Grid for Tech Stack */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}

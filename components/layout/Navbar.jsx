@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 
@@ -8,6 +9,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Project", href: "#projects" },
+  { label: "Certificate", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -15,12 +17,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Update active section based on scroll position
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       for (const section of [...sections].reverse()) {
         const el = document.getElementById(section);
@@ -39,6 +42,12 @@ export default function Navbar() {
 
   const handleNavClick = (href) => {
     setMobileOpen(false);
+    
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      return;
+    }
+    
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) {
@@ -72,11 +81,11 @@ export default function Navbar() {
         <div
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}
         >
-          {/* Logo */}
           <motion.button
             onClick={() => handleNavClick("#home")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            suppressHydrationWarning
             style={{
               background: "none",
               border: "none",
@@ -99,7 +108,6 @@ export default function Navbar() {
             </span>
           </motion.button>
 
-          {/* Desktop Nav Links */}
           <div
             style={{
               display: "flex",
@@ -115,6 +123,7 @@ export default function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
+                  suppressHydrationWarning
                   style={{
                     background: "none",
                     border: "none",
@@ -149,17 +158,16 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Right Controls */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
 
 
-            {/* Mobile Menu Button */}
             <motion.button
               onClick={() => setMobileOpen(!mobileOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle mobile menu"
               id="mobile-menu-btn"
+              suppressHydrationWarning
               style={{
                 width: "40px",
                 height: "40px",
@@ -181,7 +189,6 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div

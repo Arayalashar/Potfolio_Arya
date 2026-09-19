@@ -74,7 +74,6 @@ export default function LoadingScreen({ onComplete }) {
           exit={{ opacity: 0, scale: 1.04 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
-          {/* Background ambient glow */}
           <div
             style={{
               position: "absolute",
@@ -85,9 +84,7 @@ export default function LoadingScreen({ onComplete }) {
             }}
           />
 
-          {/* Main content */}
           <div style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
-            {/* "Arya" — big gradient word */}
             <motion.div
               custom={0}
               variants={wordVariants}
@@ -114,7 +111,6 @@ export default function LoadingScreen({ onComplete }) {
               </span>
             </motion.div>
 
-            {/* "Portofolio Loading" — smaller subtitle */}
             <motion.div
               custom={1}
               variants={wordVariants}
@@ -137,14 +133,12 @@ export default function LoadingScreen({ onComplete }) {
               </span>
             </motion.div>
 
-            {/* Progress Bar */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
               style={{ width: "260px", margin: "0 auto" }}
             >
-              {/* Track */}
               <div
                 style={{
                   height: "2px",
@@ -154,7 +148,6 @@ export default function LoadingScreen({ onComplete }) {
                   marginBottom: "1rem",
                 }}
               >
-                {/* Fill */}
                 <motion.div
                   style={{
                     height: "100%",
@@ -168,7 +161,6 @@ export default function LoadingScreen({ onComplete }) {
                 />
               </div>
 
-              {/* Percentage only — centered */}
               <motion.span
                 style={{
                   display: "block",
@@ -189,7 +181,6 @@ export default function LoadingScreen({ onComplete }) {
             </motion.div>
           </div>
 
-          {/* Decorative particles */}
           {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}

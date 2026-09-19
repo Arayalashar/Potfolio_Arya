@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiDownload, FiArrowRight, FiInstagram, FiGithub, FiLinkedin } from "react-icons/fi";
 import { profile } from "@/data/profile";
@@ -144,7 +144,6 @@ export default function HeroSection() {
         overflow: "hidden",
       }}
     >
-      {/* Background Decorations */}
       <div
         style={{
           position: "absolute",
@@ -182,13 +181,11 @@ export default function HeroSection() {
           }}
           className="hero-grid"
         >
-          {/* Left Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Main Heading */}
             <motion.h1
               variants={itemVariants}
               style={{
@@ -204,12 +201,10 @@ export default function HeroSection() {
               Hi, I&apos;m Arya
             </motion.h1>
 
-            {/* Typewriter */}
             <motion.div variants={itemVariants} style={{ marginBottom: "1.5rem" }}>
               <TypewriterText />
             </motion.div>
 
-            {/* Bio */}
             <motion.p
               variants={itemVariants}
               style={{
@@ -225,7 +220,6 @@ export default function HeroSection() {
 
 
 
-            {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
               style={{
@@ -239,6 +233,7 @@ export default function HeroSection() {
                 className="btn-primary"
                 onClick={handleScrollToProjects}
                 id="explore-work-btn"
+                suppressHydrationWarning
               >
                 Explore Work
                 <FiArrowRight />
@@ -248,13 +243,13 @@ export default function HeroSection() {
                 download
                 className="btn-secondary"
                 id="download-cv-btn"
+                suppressHydrationWarning
               >
                 <FiDownload />
                 Download CV
               </a>
             </motion.div>
 
-            {/* Connect Me In */}
             <motion.div variants={itemVariants}>
               <p
                 style={{
@@ -279,6 +274,7 @@ export default function HeroSection() {
                     aria-label={label}
                     whileHover={{ scale: 1.15, y: -3 }}
                     whileTap={{ scale: 0.9 }}
+                    suppressHydrationWarning
                     style={{
                       width: "42px",
                       height: "42px",
@@ -309,7 +305,6 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right — Profile Photo */}
           <motion.div
             variants={photoVariants}
             initial="hidden"
@@ -323,7 +318,6 @@ export default function HeroSection() {
           >
 
 
-            {/* Photo container */}
             <div style={{ position: "relative", width: "100%", maxWidth: "480px", marginLeft: "auto" }}>
               <motion.img
                 src="/Asset_FotoDiri.png"
@@ -337,7 +331,6 @@ export default function HeroSection() {
                   zIndex: 2,
                 }}
               />
-              {/* Floor Shadow */}
               <div
                 style={{
                   position: "absolute",

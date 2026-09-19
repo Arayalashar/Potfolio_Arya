@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { profile } from "@/data/profile";
-import { FiBookOpen, FiUser, FiTarget } from "react-icons/fi";
+import { FiBookOpen } from "react-icons/fi";
 import { GlareCard } from "@/components/ui/glare-card";
 
 const sectionVariants = {
@@ -35,12 +35,12 @@ export default function AboutSection() {
   return (
     <section id="about" className="section-padding" ref={ref}>
       <div className="section-container">
-        {/* Section Label */}
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          style={{ textAlign: "center", marginBottom: "4rem" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vh, 4rem)" }}
         >
           <h2
             style={{
@@ -55,9 +55,7 @@ export default function AboutSection() {
           </h2>
         </motion.div>
 
-        {/* Content Section */}
         <div className="about-wrapper">
-          {/* Outer Grid */}
           <motion.div
             variants={sectionVariants}
             initial="hidden"
@@ -70,7 +68,6 @@ export default function AboutSection() {
             }}
             className="about-main-grid"
           >
-            {/* Left: Photo */}
             <motion.div variants={fadeLeft} style={{ height: "100%" }}>
               <GlareCard className="shadow-[0_20px_40px_rgba(0,0,0,0.08)] h-full border-none rounded-[24px] bg-white overflow-hidden">
                 <img
@@ -86,7 +83,6 @@ export default function AboutSection() {
               </GlareCard>
             </motion.div>
 
-            {/* Right: Content */}
             <motion.div
               variants={fadeUp}
               style={{
@@ -95,7 +91,6 @@ export default function AboutSection() {
                 gap: "1.5rem",
               }}
             >
-              {/* Top Row in Right Column (Who Am I + My Approach) */}
               <div
                 style={{
                   display: "grid",
@@ -104,7 +99,6 @@ export default function AboutSection() {
                 }}
                 className="about-sub-grid"
               >
-                {/* Who am I (1/4 of total) */}
                 <div>
                   <h3
                     style={{
@@ -130,7 +124,6 @@ export default function AboutSection() {
                   </p>
                 </div>
 
-                {/* My Approach (1/4 of total) */}
                 <div>
                   <h3
                     style={{
@@ -157,7 +150,6 @@ export default function AboutSection() {
                 </div>
               </div>
 
-              {/* Bottom Row in Right Column (Education) */}
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", paddingBottom: "0.75rem", borderBottom: "1px solid var(--border-color)", marginBottom: "1.5rem" }}>
                   <div style={{ width: "4px", height: "1.5rem", backgroundColor: "var(--text-primary)" }}></div>

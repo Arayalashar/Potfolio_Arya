@@ -16,8 +16,7 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="section-padding relative">
       <div className="section-container" style={{ maxWidth: "1000px" }}>
-        {/* Section Header */}
-        <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vh, 4rem)" }}>
           <h2
             style={{
               fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
@@ -42,7 +41,6 @@ export default function ExperienceSection() {
           </p>
         </div>
 
-        {/* Timeline Container */}
         <div
           ref={containerRef}
           style={{
@@ -50,7 +48,6 @@ export default function ExperienceSection() {
             margin: "0 auto",
           }}
         >
-          {/* Static Background Line */}
           <div
             style={{
               position: "absolute",
@@ -63,7 +60,6 @@ export default function ExperienceSection() {
             }}
             className="timeline-line-bg"
           >
-            {/* Animated Active Line */}
             <motion.div
               style={{
                 position: "absolute",
@@ -91,7 +87,6 @@ export default function ExperienceSection() {
                 }}
                 className="exp-row"
               >
-                {/* Timeline Dot */}
                 <div
                   style={{
                     position: "absolute",
@@ -108,7 +103,6 @@ export default function ExperienceSection() {
                   className="timeline-dot"
                 />
 
-                {/* Card */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -130,7 +124,6 @@ export default function ExperienceSection() {
                       boxShadow: "0 10px 30px -10px rgba(0,0,0,0.05)",
                     }}
                   >
-                    {/* Period */}
                     <div
                       style={{
                         fontSize: "0.85rem",
@@ -143,7 +136,6 @@ export default function ExperienceSection() {
                       {exp.period}
                     </div>
 
-                    {/* Job Title */}
                     <h3
                       style={{
                         fontSize: "1.5rem",
@@ -157,7 +149,6 @@ export default function ExperienceSection() {
                       {exp.jobTitle}
                     </h3>
 
-                    {/* Organization */}
                     <div
                       style={{
                         fontSize: "0.75rem",
@@ -171,7 +162,6 @@ export default function ExperienceSection() {
                       {exp.organization}
                     </div>
 
-                    {/* Description */}
                     <p
                       style={{
                         fontSize: "0.9rem",
@@ -184,7 +174,6 @@ export default function ExperienceSection() {
                       {exp.description}
                     </p>
 
-                    {/* Tags */}
                     <div
                       className="exp-tags"
                       style={{

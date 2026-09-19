@@ -1,0 +1,8 @@
+/*
+ * Liquid Glass Footer
+ *
+ * Learn More: https://www.framer.com/asset-urls
+ */
+
+export * from "https://framerusercontent.com/modules/gUfm1k4zG1J3XbkyNTGx/NwnM5wWKuZaTzAqqZTeX/KPrjjd1vl.js"
+export { default } from "https://framerusercontent.com/modules/gUfm1k4zG1J3XbkyNTGx/NwnM5wWKuZaTzAqqZTeX/KPrjjd1vl.js"
