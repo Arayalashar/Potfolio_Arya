@@ -238,25 +238,9 @@ function ProjectCard({ project, index }) {
           {project.title}
         </h3>
 
-        <p style={{ fontSize: "clamp(0.85rem, 1.2vw, 1rem)", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+        <p style={{ fontSize: "clamp(0.85rem, 1.2vw, 1rem)", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "auto" }}>
           {project.shortDescription}
         </p>
-
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "auto" }}>
-          {project.tags?.map((tag, i) => (
-            <span key={i} style={{ 
-              padding: "0.4rem 0.8rem", 
-              fontSize: "0.75rem", 
-              fontWeight: 500,
-              border: "1px solid var(--border-color)", 
-              borderRadius: "50px",
-              color: "var(--text-primary)",
-              background: "var(--bg-primary)"
-            }}>
-              {tag}
-            </span>
-          ))}
-        </div>
 
         <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: "2rem", paddingTop: "1.5rem", borderTop: "1px solid var(--border-color)" }}>
           <a
