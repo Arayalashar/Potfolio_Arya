@@ -3,7 +3,7 @@
 export const experiences = [
   {
     id: 1,
-    jobTitle: "Quality Control Staff",
+    jobTitle: "Quality Control",
     organization: "PT MEGA KARYA MANDIRI (CARGLOSS GROUP)",
     position: "Internship",
     period: "Jun 2023 - Apr 2024",
@@ -14,7 +14,7 @@ export const experiences = [
   },
   {
     id: 2,
-    jobTitle: "Media and Information Bureau Staff",
+    jobTitle: "Staff of the Media and Information Bureau",
     organization: "BEM KM UPN \"VETERAN\" YOGYAKARTA",
     position: "Organization",
     period: "Mar 2025 - Dec 2025",

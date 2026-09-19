@@ -25,7 +25,7 @@ export const certifications = [
   },
   {
     id: 4,
-    title: "Responsive Web Design Certification",
+    title: "Basic Web Programming Course",
     issuer: "Dicoding",
     type: "Course",
     thumbnail: "/dasarweb.jpg",
