@@ -13,16 +13,16 @@ export default function CertificationsSection({ limit }) {
   return (
     <section id="certifications" className="section-padding" style={{ position: "relative" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", width: "100%", padding: "0 5%" }}>
-        
+
         <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vh, 4rem)" }}>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            style={{ 
-              fontSize: "clamp(1.5rem, 3vw, 2.25rem)", 
-              fontWeight: 800, 
+            style={{
+              fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+              fontWeight: 800,
               color: "var(--text-primary)",
               letterSpacing: "-0.03em"
             }}
@@ -40,9 +40,9 @@ export default function CertificationsSection({ limit }) {
           </motion.p>
         </div>
 
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "1.5rem",
           marginBottom: limit ? "3rem" : "0"
         }}>
@@ -73,8 +73,8 @@ export default function CertificationsSection({ limit }) {
                 e.currentTarget.style.borderColor = "var(--border-color)";
               }}
             >
-              <div style={{ 
-                width: "100%", 
+              <div style={{
+                width: "100%",
                 aspectRatio: "4/3",
                 background: "#f0f0f0",
                 padding: "1.5rem",
@@ -85,8 +85,8 @@ export default function CertificationsSection({ limit }) {
                 {failedImages[cert.id] ? (
                   <span style={{ color: "#666", fontSize: "0.8rem" }}>Image not found</span>
                 ) : (
-                  <img 
-                    src={cert.thumbnail} 
+                  <img
+                    src={cert.thumbnail}
                     alt={cert.title}
                     style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "0.5rem" }}
                     onError={() => setFailedImages(prev => ({ ...prev, [cert.id]: true }))}
@@ -94,10 +94,10 @@ export default function CertificationsSection({ limit }) {
                 )}
               </div>
 
-              <div style={{ 
-                padding: "1.25rem 1rem", 
-                display: "flex", 
-                alignItems: "center", 
+              <div style={{
+                padding: "1.25rem 1rem",
+                display: "flex",
+                alignItems: "center",
                 gap: "1rem",
                 background: "var(--bg-card)",
                 borderTop: "1px solid var(--border-color)"
@@ -150,34 +150,34 @@ export default function CertificationsSection({ limit }) {
         </div>
 
         {limit && certifications.length > limit && (
-           <div style={{ textAlign: "center", marginTop: "2rem" }}>
-             <Link
-               href="/certifications"
-               style={{
-                 display: "inline-flex",
-                 alignItems: "center",
-                 gap: "0.5rem",
-                 fontSize: "0.9rem",
-                 fontWeight: 600,
-                 color: "var(--text-secondary)",
-                 textDecoration: "none",
-                 padding: "0.75rem 1.5rem",
-                 border: "1px solid var(--border-color)",
-                 borderRadius: "50px",
-                 transition: "all 0.3s ease",
-               }}
-               onMouseEnter={(e) => {
-                 e.currentTarget.style.color = "var(--text-primary)";
-                 e.currentTarget.style.borderColor = "var(--text-primary)";
-               }}
-               onMouseLeave={(e) => {
-                 e.currentTarget.style.color = "var(--text-secondary)";
-                 e.currentTarget.style.borderColor = "var(--border-color)";
-               }}
-             >
-               View all achievements <FiArrowRight />
-             </Link>
-           </div>
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <Link
+              href="/certifications"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                fontSize: "0.9rem",
+                fontWeight: 600,
+                color: "var(--text-secondary)",
+                textDecoration: "none",
+                padding: "0.75rem 1.5rem",
+                border: "1px solid var(--border-color)",
+                borderRadius: "50px",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--text-primary)";
+                e.currentTarget.style.borderColor = "var(--text-primary)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--text-secondary)";
+                e.currentTarget.style.borderColor = "var(--border-color)";
+              }}
+            >
+              View all achievements <FiArrowRight />
+            </Link>
+          </div>
         )}
       </div>
 
@@ -253,10 +253,10 @@ export default function CertificationsSection({ limit }) {
                 flexDirection: "column"
               }}
             >
-              <img 
-                src={selectedCert.thumbnail} 
+              <img
+                src={selectedCert.thumbnail}
                 alt={selectedCert.title}
-                style={{ 
+                style={{
                   display: "block",
                   maxWidth: "100%",
                   maxHeight: "85vh",
